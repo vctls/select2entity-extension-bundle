@@ -29,6 +29,8 @@ First, create a `Searcher` class for the entity you want to use in your field.
 
 namespace App\Util;
 
+use Vctls\Select2EntityExtensionBundle\Util\Searcher;
+
 class ExampleSearcher extends Searcher
 {
     public $alias = 'example';
