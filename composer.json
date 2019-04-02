@@ -1,0 +1,24 @@
+{
+    "name": "vctls/select2entity-extension-bundle",
+    "type": "symfony-bundle",
+    "description": "An extension of TetranzSelect2EntityBundle with a couple helper classes.",
+    "keywords": ["symfony","select2", "typeahead","autocomplete"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Victor Toulouse",
+            "email": "toulousevictor@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "doctrine/orm": ">=2.4"
+    },
+    "autoload": {
+        "psr-4": { "Vctls\\Select2EntityExtensionBundle\\": "" }
+    },
+    "extra": {
+        "branch-alias": {
+        }
+    }
+}

@@ -1,0 +1,3 @@
+generic_autocomplete:
+  path: /select2_autocomplete/{classname}
+  defaults: { _controller: VctlsSelect2EntityExtensionBundle:Select2:search }
