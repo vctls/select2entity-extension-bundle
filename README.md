@@ -17,7 +17,7 @@ Add the namespace of your `Searcher` classes in `config.yml`. Default is `App\Ut
 ```yaml
 # config.yml
 vctls_select2_entity_extension:
-    searcher_namespace: 'AppBundle\Tool\Select2\'
+    searcher_namespace: 'App\Tools\Select2\'
 ```
 
 ## Creating Select2 fields:
@@ -80,3 +80,43 @@ class ExampleType extends AbstractType
 
 ## Secure access to the default controller
 
+You can create a `Voter` that will controll access to different entities.
+
+```php
+<?php
+// App\Security\EntityVoter.php
+namespace App\Security;
+
+use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+use Symfony\Component\Security\Core\Authorization\Voter\Voter;
+use App\Entity;
+
+class EntityVoter extends Voter
+{
+    const ENTITIES_BY_ROLE = [
+        'ROLE_USER' => [
+            Entity\Example::class
+        ],
+        'ROLE_ADMIN' => [
+            Entity\User::class
+        ]
+    ];
+    
+    protected function supports($access, $subject)
+    {
+        return $access === 'view' && gettype($subject) === 'string';
+    }
+
+    protected function voteOnAttribute($access, $subject, TokenInterface $token)
+    {
+        $roles = $token->getRoles();
+
+        foreach ($roles as $role) {
+            if (in_array($subject, self::ENTITIES_BY_ROLE[$role->getRole()])) {
+                return true;
+            }
+        }   
+        return false;
+    }
+}
+```

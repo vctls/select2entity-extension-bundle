@@ -23,12 +23,12 @@ class S2
     /**
      * Return an array of arguments to pass to the $builder->add() method.
      *
-     * @param $field
-     * @param $class
-     * @param bool $multiple
-     * @param string $pk
-     * @param null $label
-     * @param bool $required
+     * @param string $field Name of the field
+     * @param string $class Class name of the entity
+     * @param bool $multiple Enable multiple selections
+     * @param string $pk Name of the entity primary key
+     * @param string $label Label of the field
+     * @param bool $required Required field
      * @return array
      */
     public static function build($field, $class, $multiple = false, $pk = 'id', $label = null, $required = false)
